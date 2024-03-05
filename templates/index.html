@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Generator</title>
+  </head>
+  <body>
+    <h1>Video Generator</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <label for="audio">Upload Audio File:</label>
+      <input type="file" id="audio" name="audio" accept="audio/*" /><br /><br />
+      <label for="image">Upload Image File:</label>
+      <input type="file" id="image" name="image" accept="image/*" /><br /><br />
+      <button type="submit">Generate Video</button>
+    </form>
+    <div id="video-container"></div>
+
+    <script>
+      document
+        .querySelector("form")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          const formData = new FormData(this);
+
+          try {
+            const response = await fetch("/upload", {
+              method: "POST",
+              body: formData,
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+              const videoContainer = document.getElementById("video-container");
+              videoContainer.innerHTML = `<video controls autoplay>
+                                                    <source src="${data.video_url}" type="video/mp4">
+                                                </video>`;
+            } else {
+              alert("Error: " + data.error);
+            }
+          } catch (error) {
+            console.error(error);
+            alert("An error occurred while generating the video.");
+          }
+        });
+    </script>
+  </body>
+</html>

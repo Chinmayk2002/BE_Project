@@ -1,6 +1,7 @@
 import SidebarLink from "@/components/Docs/SidebarLink";
 import { Metadata } from "next";
 import { useState } from 'react';
+
 // import Replicate from "replicate";
 export const metadata: Metadata = {
   title: "GenMedia",
@@ -70,6 +71,7 @@ export default function DocsPage() {
 
   const iframeSrc = 'http://127.0.0.1:7860';
   const image = 'http://127.0.0.1:7861/';
+  const vid = 'http://127.0.0.1:5000/';
   
   return (
     <>
@@ -90,6 +92,12 @@ export default function DocsPage() {
                 <iframe
         title="Local Server Iframe"
         src={image}
+        className="w-full h-full m-2 p-2"
+        frameBorder="0"
+      />
+                <iframe
+        title="Local Server Iframe"
+        src={vid}
         className="w-full h-full m-2 p-2"
         frameBorder="0"
       />
