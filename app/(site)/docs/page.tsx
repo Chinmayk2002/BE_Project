@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { useState } from 'react';
 // import Replicate from "replicate";
 export const metadata: Metadata = {
-  title: "Docs Page - Solid SaaS Boilerplate",
+  title: "GenMedia",
   description: "This is Docs page for Solid Pro",
   // other metadata
 };
@@ -45,67 +45,56 @@ export const metadata: Metadata = {
 
 export default function DocsPage() {
   
-  async function query(data) {
-    const response = await fetch(
-      "https://api-inference.huggingface.co/models/facebook/musicgen-medium",
-      {
-        headers: {
-          Authorization: "Bearer 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",
-        },
-        method: "POST",
-        body: JSON.stringify(data),
-      },
-    );
+  // async function query(data) {
+  //   const response = await fetch(
+  //     "https://api-inference.huggingface.co/models/facebook/musicgen-medium",
+  //     {
+  //       headers: {
+  //         Authorization: "Bearer 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",
+  //       },
+  //       method: "POST",
+  //       body: JSON.stringify(data),
+  //     },
+  //   );
     
-    const result = await response.blob();
+  //   const result = await response.blob();
 
     
-    return result;
-  }
+  //   return result;
+  // }
 
-  const data = query({ inputs: "liquid drum and bass" }).then((response) => {
-    console.log(response);
+  // const data = query({ inputs: "liquid drum and bass" }).then((response) => {
+  //   console.log(response);
 
-  });
+  // });
 
-
+  const iframeSrc = 'http://127.0.0.1:7860';
+  const image = 'http://127.0.0.1:7861/';
   
   return (
     <>
       <section className="pb-16 pt-24 md:pb-20 md:pt-28 lg:pb-24 lg:pt-32">
         <div className="container mx-auto">
           <div className="-mx-4 flex flex-wrap">
-            <div className="w-full px-4 lg:w-1/4">
-              <div className="sticky top-[74px] rounded-lg border border-white p-4 shadow-solid-4  transition-all  dark:border-strokedark dark:bg-blacksection">
-                <ul className="space-y-2">
-                  <SidebarLink />
-                </ul>
-              </div>
-            </div>
+            
 
             <div className="w-full px-4 lg:w-3/4">
-              <div className="blog-details blog-details-docs shadow-three dark:bg-gray-dark rounded-sm bg-white px-8 py-11 sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]">
-                <h1>Welcome to Startup Documentation</h1>
+              <h1>Welcome to GenMedia</h1>
 
-                <p className="text-body-color dark:text-body-color-dark text-base">
-                  This document serves as a simple template to showcase a sample
-                  layout and format. It is solely created for demonstration{<audio controls>
-          {/* <source src={data} type="audio/mpeg" /> */}
-          Your browser does not support the audio element.
-        </audio>}
-                  purposes and is not intended for any official use.
-                </p>
-                <p className="text-body-color dark:text-body-color-dark text-base">
-                  Please visit:{" "}
-                  <b>
-                    <a href="https://nextjstemplates.com/docs">
-                      nextjstemplates.com/docs
-                    </a>
-                  </b>{" "}
-                  to check out the real docs, setup guide and even video
-                  instructions
-                </p>
-              </div>
+                <iframe
+        title="Local Server Iframe"
+        src={iframeSrc}
+        className="w-full h-full m-2 p-2"
+        frameBorder="0"
+      />
+                <iframe
+        title="Local Server Iframe"
+        src={image}
+        className="w-full h-full m-2 p-2"
+        frameBorder="0"
+      />
+               
+             
             </div>
           </div>
         </div>

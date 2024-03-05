@@ -22,14 +22,14 @@ export default function RootLayout({
         <ThemeProvider
           enableSystem={false}
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
         >
           <Lines />
           <Header />
           <ToasterContext />
           {children}
-          <Footer />
-          <ScrollToTop />
+          {/* <Footer /> */}
+          {/* <ScrollToTop /> */}
         </ThemeProvider>
       </body>
     </html>
